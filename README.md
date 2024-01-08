@@ -44,7 +44,7 @@ The following are collapsible contents, each containing snippets to help you get
 <details>
   <summary>Concluding a test</summary>
 
-  <h4>Concluding with a custom significance level using <code>conclude</code></h4>
+  <h3>Concluding with a custom significance level using <code>conclude</code></h3>
 
   Every instance of a test result such as `Z`, `T`, and `ChiSquare` have a method `conclude` which you can call to return a `Conclusion` variant (one of `Reject` or `DoNotReject`). The `conclude` method takes in two parameters:
 
@@ -65,7 +65,7 @@ The following are collapsible contents, each containing snippets to help you get
 
   `conclude` checks if the p-value assigned to `self.p` exceeds the significance level. If `self.p < significance_level`, then `conclude` will return the `Reject` variant. Otherwise, it will return the `DoNotReject` variant.
 
-  <h4>Concluding conventionally with <code>conclude_by_convention</code></h4>
+  <h3>Concluding conventionally with <code>conclude_by_convention</code></h3>
 
   `conclude_by_convention` is an alternative to `conclude`. It assumes a significance level of 0.05, which is widely regarded as an appropriate default in statistics.
 
