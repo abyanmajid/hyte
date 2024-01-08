@@ -15,8 +15,6 @@ hyte = "0.1.0"
 
 ## Quickstart
 
-### Hypothesis testing
-
 The following are collapsible contents, each containing snippets to help you get started.
 
 <details>
@@ -85,7 +83,7 @@ The following are collapsible contents, each containing snippets to help you get
 
 </details>
 
-### Getting help
+## Getting help
 
 The documentation for this crate can be found at [Work In Progress](https://github.com/abyanmajid/hyte/blob/main/LICENSE). Alternatively, you can print out a short manual by calling the `help` function.
 
