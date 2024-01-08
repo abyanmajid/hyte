@@ -5,6 +5,12 @@ pub enum Matrix<Number> {
     OneDimensional(Vec<Number>),
 }
 
+pub enum Tails {
+    LOWER,
+    UPPER,
+    BOTH,
+}
+
 pub fn mean(numbers: &[f64]) -> Option<f64> {
     let sum: f64 = numbers.iter().sum();
     let count = numbers.len();

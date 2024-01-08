@@ -1,6 +1,7 @@
 use hyte::chisquare::ChiSquare;
-use hyte::z::{Z, Tails};
-use hyte::utils::Matrix;
+use hyte::z::Z;
+use hyte::t::T;
+use hyte::utils::{Matrix, Tails};
 
 fn try_chisquare() {
     let results1 = ChiSquare::test(
@@ -21,7 +22,11 @@ fn try_chisquare() {
 }
 
 fn try_z() {
-    let results1 = Z::test(
+    
+    
+    // ------------------------------------------ DATALESS ------------------------------------------
+    
+    let results1 = Z::test_dataless(
         1.2, 
         1.0, 
         30, 
@@ -30,7 +35,7 @@ fn try_z() {
         true,
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results1.test_type, results1.statistic, results1.p);
-    let results2 = Z::test(
+    let results2 = Z::test_dataless(
         1.2, 
         1.0, 
         30, 
@@ -39,7 +44,7 @@ fn try_z() {
         true,
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results2.test_type, results2.statistic, results2.p);
-    let results3 = Z::test(
+    let results3 = Z::test_dataless(
         1.2, 
         1.0, 
         30, 
@@ -50,7 +55,45 @@ fn try_z() {
     println!("test_type: {}, statistic: {}, p-value: {}", results3.test_type, results3.statistic, results3.p);
 }
 
+fn try_t() {
+    
+    // ------------------------------------------ DATALESS ------------------------------------------
+
+    let results1 = T::test_dataless(
+        1.2, 
+        1.0, 
+        30, 
+        0.5,
+        29,
+        Tails::LOWER,
+        true,
+    );
+    println!("test_type: {}, statistic: {}, p-value: {}", results1.test_type, results1.statistic, results1.p);
+    let results2 = T::test_dataless(
+        1.2, 
+        1.0, 
+        30, 
+        0.5,
+        29,
+        Tails::UPPER,
+        true,
+    );
+    println!("test_type: {}, statistic: {}, p-value: {}", results2.test_type, results2.statistic, results2.p);
+    let results3 = T::test_dataless(
+        1.2, 
+        1.0, 
+        30, 
+        0.5,
+        29,
+        Tails::BOTH,
+        true,
+    );
+    println!("test_type: {}, statistic: {}, p-value: {}", results3.test_type, results3.statistic, results3.p);
+    
+}
+
 fn main() {
     // try_chisquare();
     // try_z();
+    try_t();
 }
