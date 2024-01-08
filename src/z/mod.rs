@@ -1,6 +1,6 @@
 use statrs::distribution::Normal;
 use statrs::distribution::ContinuousCDF;
-use crate::utils::Tails;
+use crate::utils::{Tails, mean, variance};
 
 pub struct Z {
     pub test_type: &'static str,
@@ -9,8 +9,15 @@ pub struct Z {
 }
 
 impl Z {
-    pub fn test_dataless(observed_mean: f64, expected_mean: f64, sample_size: u32, pop_sd: f64, tail: Tails, print_output: bool) -> Z {
-        let statistic: f64 = (observed_mean - expected_mean) / (pop_sd / (sample_size as f64).sqrt());
+    pub fn test<Number: Into<f64> + Copy, Number2: Into<f64> + Copy>(data: Vec<Number>, expected_mean: Number2, tail: Tails, print_output: bool) -> Z {
+        let observed_mean = mean(&data).unwrap();
+        let sample_size = data.len() as u32;
+        let sd = variance(&data).unwrap().sqrt();
+        Self::test_dataless(observed_mean, expected_mean.into(), sample_size, sd, tail, print_output)
+    }
+
+    pub fn test_dataless<Number: Into<f64> + Copy>(observed_mean: Number, expected_mean: Number, sample_size: u32, pop_sd: Number, tail: Tails, print_output: bool) -> Z {
+        let statistic: f64 = (observed_mean.into() - expected_mean.into()) / (pop_sd.into() / (sample_size as f64).sqrt());
         let standard_normal = Normal::new(0.0, 1.0).unwrap();
         let p: f64;
         let test_type: &'static str;

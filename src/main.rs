@@ -2,6 +2,7 @@ use hyte::chisquare::ChiSquare;
 use hyte::z::Z;
 use hyte::t::T;
 use hyte::utils::{Matrix, Tails};
+use hyte::help;
 
 fn try_chisquare() {
     let results1 = ChiSquare::test(
@@ -55,6 +56,14 @@ fn try_z() {
         true,
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results3.test_type, results3.statistic, results3.p);
+
+    let results4 = Z::test(
+        vec![1, 2, 3, 4, 5],
+        3.5,
+        Tails::LOWER,
+        true,
+    );
+    println!("test_type: {}, statistic: {}, p-value: {}", results4.test_type, results4.statistic, results4.p);
 }
 
 fn try_t() {
@@ -66,7 +75,6 @@ fn try_t() {
         1.0, 
         30, 
         0.5,
-        29,
         Tails::LOWER,
         true,
     );
@@ -77,7 +85,6 @@ fn try_t() {
         1.0, 
         30, 
         0.5,
-        29,
         Tails::UPPER,
         true,
     );
@@ -88,7 +95,6 @@ fn try_t() {
         1.0, 
         30, 
         0.5,
-        29,
         Tails::BOTH,
         true,
     );
@@ -99,10 +105,19 @@ fn try_t() {
     let results4 = T::test_two_samples(data1, data2, true);
     println!("test_type: {}, statistic: {}, p-value: {}", results4.test_type, results4.statistic, results4.p);
 
+    let results5 = T::test(
+        vec![2.5, 2.9, 3.1, 2.6, 2.7, 2.8, 3.0, 3.2],
+        3,
+        Tails::LOWER,
+        true
+    );
+    println!("test_type: {}, statistic: {}, p-value: {}", results5.test_type, results5.statistic, results5.p);
+
 }
 
 fn main() {
     // try_chisquare();
     // try_z();
-    try_t();
+    // try_t();
+    help();
 }
