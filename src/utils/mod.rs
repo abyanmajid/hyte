@@ -11,8 +11,11 @@ pub enum Tails {
     BOTH,
 }
 
-pub fn mean(numbers: &[f64]) -> Option<f64> {
-    let sum: f64 = numbers.iter().sum();
+pub fn mean<Number: Into<f64> + Copy>(numbers: &[Number]) -> Option<f64> {
+    let mut sum: f64 = 0.0;
+    for &num in numbers {
+        sum += num.into();
+    }
     let count = numbers.len();
 
     // Check to prevent division by zero
@@ -53,4 +56,21 @@ pub fn range(numbers: &[i32]) -> Option<i32> {
     } else {
         Some(numbers.iter().max().unwrap() - numbers.iter().min().unwrap())
     }
+}
+
+pub fn variance<Number: Into<f64> + Copy>(data: &[Number]) -> Option<f64> {
+    let len = data.len();
+    if len == 0 {
+        return None;
+    }
+
+    let mean = mean(data);
+    let variance = data.iter()
+                       .map(|&value| {
+                           let diff = value.into() - mean.unwrap();
+                           diff * diff
+                       })
+                       .sum::<f64>() / (len - 1) as f64;
+
+    Some(variance)
 }

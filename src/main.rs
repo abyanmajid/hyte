@@ -35,6 +35,7 @@ fn try_z() {
         true,
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results1.test_type, results1.statistic, results1.p);
+    
     let results2 = Z::test_dataless(
         1.2, 
         1.0, 
@@ -44,6 +45,7 @@ fn try_z() {
         true,
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results2.test_type, results2.statistic, results2.p);
+    
     let results3 = Z::test_dataless(
         1.2, 
         1.0, 
@@ -69,6 +71,7 @@ fn try_t() {
         true,
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results1.test_type, results1.statistic, results1.p);
+    
     let results2 = T::test_dataless(
         1.2, 
         1.0, 
@@ -79,6 +82,7 @@ fn try_t() {
         true,
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results2.test_type, results2.statistic, results2.p);
+    
     let results3 = T::test_dataless(
         1.2, 
         1.0, 
@@ -90,6 +94,11 @@ fn try_t() {
     );
     println!("test_type: {}, statistic: {}, p-value: {}", results3.test_type, results3.statistic, results3.p);
     
+    let data1 = vec![20, 22, 19, 20, 21, 20, 19, 21, 22, 18];
+    let data2 = vec![22, 24, 23, 24, 25, 23, 24, 23, 22, 24];
+    let results4 = T::test_two_samples(data1, data2, true);
+    println!("test_type: {}, statistic: {}, p-value: {}", results4.test_type, results4.statistic, results4.p);
+
 }
 
 fn main() {
