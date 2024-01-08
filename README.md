@@ -46,7 +46,7 @@ The following are collapsible contents, each containing snippets to help you get
 
   <h3>Concluding with a custom significance level using <code>conclude</code></h3>
 
-  Every instance of a test result such as `Z`, `T`, and `ChiSquare` have a method `conclude` which you can call to return a `Conclusion` variant (one of `Reject` or `DoNotReject`). The `conclude` method takes in two parameters:
+  Every instance of a test result such as `Z`, `T`, and `ChiSquare` have a method `conclude` which returns a `Conclusion` variant (one of `Reject` or `DoNotReject`). The `conclude` method takes in two parameters:
 
   - significance_level: `f64`
   - print_output: `bool`
@@ -85,7 +85,7 @@ The following are collapsible contents, each containing snippets to help you get
 
 ## Getting help
 
-The documentation for this crate can be found at [Work In Progress](https://github.com/abyanmajid/hyte/blob/main/LICENSE). Alternatively, you can print out a short manual by calling the `help` function.
+The documentation for this crate can be found at [Work In Progress](https://github.com/abyanmajid/hyte/blob/main/LICENSE). Alternatively, you can print a short manual to the standard output by calling the `help` function.
 
 ```rust
 use hyte::help;
