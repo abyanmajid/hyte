@@ -2,7 +2,7 @@
 
 ***Hyte*** is a ***Hy***pothesis ***te***sting library crate for Rust with support for Chi-square, Z, and T-tests.
 
-WORK IN PROGRESS
+[Documentation](https://docs.rs/hyte/0.1.0/hyte/) | [Source](https://github.com/abyanmajid/hyte/) | [crates.io](https://crates.io/crates/hyte)
 
 ## Installation
 
@@ -19,9 +19,51 @@ The following are collapsible contents, each containing snippets to help you get
 
 <details>
   <summary>Performing Z-tests</summary>
-  <br>
 
-  Work in Progress
+  <h3>Performing a 1-sample Z-test</h3>
+
+  You can use `z::test`, a function that takes the following arguments:
+
+  - data: `Vec<Number>`
+  - expected_mean: `Number`
+  - tail: `Tails::LOWER`, `Tails::UPPER`, or `Tails::BOTH`
+  - print_output: `bool`
+
+  where `Number` is a generic that accepts integers and floats. Here is an example of a how you can perform a lower-tailed 1-sample Z-test:
+
+  ```rust
+  use hyte::z;
+  use hyte::utils::Tails;
+   
+  fn main() {
+      let data = vec![1, 2, 3, 4, 5];
+      let results = z::test(data, 3.5, Tails::LOWER, true).unwrap();
+  }
+  ```
+
+  Should you need to perform upper-tailed or 2-sided Z-tests, simply pass the `Tails::UPPER` or `Tails::BOTH` variants to `tail`.
+
+  <h3>Performing a 1-sample Z-test given numerical summaries</h3>
+
+  You can alternatively perform Z-tests using the `z::test_dataless` function which takes in numerical summaries including observed mean, sample size, and population standard deviation, all in replacement of data. The `z::test_dataless` function takes the following arguments:
+
+  - observed_mean: `Number`
+  - expected_mean: `Number`
+  - sample_size: `u32`
+  - pop_sd: `Number`
+  - tail: `Tails::LOWER`, `Tails::UPPER`, or `Tails::BOTH`
+  - print_output: `bool`
+
+  Here is an example:
+  
+  ```rust
+  use hyte::z;
+  use hyte::utils::Tails;
+  
+  fn main() {
+      let results = z::test_dataless(1.2, 1.0, 30, 0.5, Tails::LOWER, true).unwrap();
+  }
+  ```
   
 </details>
 
@@ -46,19 +88,17 @@ The following are collapsible contents, each containing snippets to help you get
 
   <h3>Concluding with a custom significance level using <code>conclude</code></h3>
 
-  Every instance of a test result such as `Z`, `T`, and `ChiSquare` have a method `conclude` which returns a `Conclusion` variant (one of `Reject` or `DoNotReject`). The `conclude` method takes in two parameters:
+  Every instance of a test result such as `ZResult`, `TResult`, and `ChiSquareResult` have a method `conclude` which returns a `Conclusion` variant (one of `Reject` or `DoNotReject`). The `conclude` method takes in two parameters:
 
   - significance_level: `f64`
   - print_output: `bool`
   
   ```rust
-  use hyte::z::Z;
+  use hyte::z;
+  use hyte::utils::Tails;
 
   fn main() {
-      let results = Z::test(vec![1, 2, 3, 4, 5], 3.5, Tails::LOWER, true);
-
-      // args: significance_level: f64, print_output: bool
-      // returns: a `Conclusion` variant - either `Reject` or `DoNotReject`
+      let results = z::test(vec![1, 2, 3, 4, 5], 3.5, Tails::LOWER, true).unwrap();
       let conclusion = results.conclude(0.1, true);
   }
   ```
@@ -70,13 +110,11 @@ The following are collapsible contents, each containing snippets to help you get
   `conclude_by_convention` is an alternative to `conclude`. It assumes a significance level of 0.05, which is widely regarded as an appropriate default in statistics.
 
   ```rust
-  use hyte::z::Z;
+  use hyte::z;
+  use hyte::utils::Tails;
 
   fn main() {
-      let results = Z::test(vec![1, 2, 3, 4, 5], 3.5, Tails::LOWER, true);
-
-      // args: print_output: bool
-      // returns: a `Conclusion` variant - either `Reject` or `DoNotReject`
+      let results = z::test(vec![1, 2, 3, 4, 5], 3.5, Tails::LOWER, true).unwrap();
       let conclusion = results.conclude_by_convention(true);
   }
   ```
