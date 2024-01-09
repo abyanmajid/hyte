@@ -119,7 +119,7 @@ pub fn test_dataless<Number: Into<f64> + Copy>(observed_mean: Number, expected_m
     Some(results)
 }
 
-/// Calculates T-score and p-value for a 2-sample T-test, given two groups of data each of type Vec<Number>. 
+/// Calculates T-score and p-value for a 2-sample T-test, given two groups of data each of type `Vec<Number>``. 
 /// It returns a `TResult` instance with T-score and p-value as fields `statistic` and `p` respectively.
 /// 
 /// # Examples
