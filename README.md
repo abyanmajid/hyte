@@ -2,7 +2,7 @@
 
 ***Hyte*** is a ***Hy***pothesis ***te***sting library crate for Rust with support for Chi-square, Z, and T-tests.
 
-[Documentation](https://docs.rs/hyte/0.1.0/hyte/) | [crates.io](https://crates.io/crates/hyte) | [Source](https://github.com/abyanmajid/hyte/)
+[Documentation](https://docs.rs/hyte/0.1.0/hyte/) 📃 | [crates.io](https://crates.io/crates/hyte) 📦 | [Source](https://github.com/abyanmajid/hyte/) 🌿
 
 ## Installation
 
