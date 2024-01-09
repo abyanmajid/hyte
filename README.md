@@ -138,8 +138,64 @@ The following are collapsible contents, each containing snippets to help you get
 <details>
   <summary>Performing Pearson's Chi-squared tests</summary>
   <br>
+  
+  The `chisquare` module only contains one funtion `chisquare::test` which can be used to perform both Pearson's Chi-squared test of independence and goodness of fit. It takes on the following arguments:
 
-  Work in Progress
+  - test_type: `&str`
+  - observed_matrix: `Matrix<Number>`
+  - gof_probabilities: `Option<Vec<f64>>`
+  - print_output: `bool`
+
+  where `Matrix<Number>` is an enum with two variants: `Matrix::TwoDimensional(Vec<Vec<Number>>)` and `Matrix::OneDimensional(Vec<Number>)`.
+
+  <h3>Test of independence</h3>
+
+  To perform a test of independence, you must pass in:
+  
+  - `"toi"` to `test_type`
+  - `Option::None` variant to `gof_probabilities`
+  - `Matrix::TwoDimensional(Vec<Vec<Number>>)` to `observed_matrix`
+
+  Here's an example:
+  ```rust
+  use hyte::chisquare;
+  use hyte::utils::Matrix;
+  
+  fn main() {
+      let observed_frequencies = Matrix::TwoDimensional(vec![vec![762, 327, 468], 
+                                                             vec![484, 239, 477]]);
+      let results = chisquare::test(
+          "toi", 
+          observed_frequencies, 
+          None, 
+          true
+      ).unwrap();
+  }
+  ```
+
+  <h3>Goodness Of Fit</h3>
+
+  To perform a goodness of fit test, you must pass in:
+  
+  - `"gof"` to `test_type`
+  - `Option::Some(f64)` variant to `gof_probabilities`
+  - `Matrix::OneDimensional(Vec<Number>)` to `observed_matrix`
+
+  Here's an example:
+  
+  ```rust
+  use hyte::chisquare;
+  use hyte::utils::Matrix;
+  
+  fn main() {
+      let results = chisquare::test(
+          "gof",
+          Matrix::OneDimensional(vec![30, 40, 30]),
+          Some(vec![0.25, 0.5, 0.25]),
+          true
+      ).unwrap();
+  }
+  ```
   
 </details>
 
