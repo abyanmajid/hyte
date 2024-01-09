@@ -2,7 +2,7 @@
 
 ***Hyte*** is a ***Hy***pothesis ***te***sting library crate for Rust with support for Chi-square, Z, and T-tests.
 
-[Documentation](https://docs.rs/hyte/0.1.0/hyte/) | [Source](https://github.com/abyanmajid/hyte/) | [crates.io](https://crates.io/crates/hyte)
+[Documentation](https://docs.rs/hyte/0.1.0/hyte/) | [crates.io](https://crates.io/crates/hyte) | [Source](https://github.com/abyanmajid/hyte/)
 
 ## Installation
 
@@ -20,9 +20,9 @@ The following are collapsible contents, each containing snippets to help you get
 <details>
   <summary>Performing Z-tests</summary>
 
-  <h3>Performing a 1-sample Z-test</h3>
+  <h3>1-sample Z-test</h3>
 
-  You can use `z::test`, a function that takes the following arguments:
+  You can perform a 1-sample Z-test using `z::test`, a function that takes in the following arguments:
 
   - data: `Vec<Number>`
   - expected_mean: `Number`
@@ -43,7 +43,7 @@ The following are collapsible contents, each containing snippets to help you get
 
   Should you need to perform upper-tailed or 2-sided Z-tests, simply pass the `Tails::UPPER` or `Tails::BOTH` variants to `tail`.
 
-  <h3>Performing a 1-sample Z-test given numerical summaries</h3>
+  <h3>1-sample Z-test given numerical summaries</h3>
 
   You can alternatively perform Z-tests using the `z::test_dataless` function which takes in numerical summaries including observed mean, sample size, and population standard deviation, all in replacement of data. The `z::test_dataless` function takes the following arguments:
 
@@ -69,9 +69,69 @@ The following are collapsible contents, each containing snippets to help you get
 
 <details>
   <summary>Performing T-tests</summary>
-  <br>
 
-  Work in Progress
+  <h3>1-sample T-test</h3>
+
+  You can perform a 1-sample T-test using `t::test`, a function that takes in the following arguments:
+
+  - data: `Vec<Number>`
+  - expected_mean: `Number`
+  - tail: `Tails::LOWER`, `Tails::UPPER`, or `Tails::BOTH`
+  - print_output: `bool`
+
+  where `Number` is a generic that accepts integers and floats. Here is an example of a how you can perform a lower-tailed 1-sample T-test:
+
+  ```rust
+  use hyte::t;
+  use hyte::utils::Tails;
+  
+  fn main() {
+      let data = vec![2.5, 2.9, 3.1, 2.6, 2.7, 2.8, 3.0, 3.2];
+      let results = t::test(data, 3, Tails::LOWER, true).unwrap();
+  }
+  ```
+
+  <h3>1-sample T-test given numerical summaries</h3>
+
+  You can alternatively perform T-tests using the `t::test_dataless` function which takes in numerical summaries including observed mean, sample size, and population standard deviation, all in replacement of data. The `t::test_dataless` function takes the following arguments:
+
+  - observed_mean: `Number`
+  - expected_mean: `Number`
+  - sample_size: `u32`
+  - pop_sd: `Number`
+  - tail: `Tails::LOWER`, `Tails::UPPER`, or `Tails::BOTH`
+  - print_output: `bool`
+
+  Here is an example:
+  
+  ```rust
+  use hyte::t;
+  use hyte::utils::Tails;
+  
+  fn main() {
+      let results = t::test_dataless(1.2, 1.0, 30, 0.5, Tails::LOWER, true).unwrap();
+  }
+  ```
+
+  <h3>2-sample T-test</h3>
+
+  Hyte provides the `t::test_two_samples` function for performing a 2-sample T-test. It takes in the following arguments:
+
+  - data1: `Vec<Number>`
+  - data2: `Vec<Number>`
+  - print_output: `bool`
+
+  Here's an example:
+
+  ```rust
+  use hyte::t;
+
+  fn main() {
+      let group1 = vec![20, 22, 19, 20, 21, 20, 19, 21, 22, 18];
+      let group2 = vec![22, 24, 23, 24, 25, 23, 24, 23, 22, 24];
+      let results = t::test_two_samples(group1, group2, true).unwrap();
+  }
+  ```
 
 </details>
 
