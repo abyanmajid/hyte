@@ -183,7 +183,7 @@ The following are collapsible contents, each containing snippets to help you get
 
 ## Getting help
 
-The documentation for this crate can be found at [Work In Progress](https://github.com/abyanmajid/hyte/blob/main/LICENSE). Alternatively, you can print a short manual to the standard output by calling the `help` function.
+The documentation for this crate can be found at [docs.rs/hyte](https://docs.rs/hyte). Alternatively, you can print a short manual to the standard output by calling the `help` function.
 
 ```rust
 use hyte::help;
