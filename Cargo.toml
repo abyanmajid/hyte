@@ -1,6 +1,6 @@
 [package]
 name = "hyte"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A hypothesis testing library crate for Z, T, and Pearson's Chi-squared tests."
 license = "MIT"
