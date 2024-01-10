@@ -1,5 +1,5 @@
 # Test action
-name: Cargo Build & Test
+name: ci
 
 on:
   push:

@@ -81,7 +81,7 @@ pub fn test_dataless<Number: Into<f64> + Copy>(observed_mean: Number, expected_m
     if sample_size == 0 { panic!("\n[HYTE-Panic] Sample size must be greater than 0!\n") };
     if pop_sd.into() < 0.0 { panic!("\n[HYTE-Panic] Standard deviation must not be a negative number!\n") };
     
-    let statistic: f64 = (expected_mean.into()) / (pop_sd.into() / (sample_size as f64).sqrt());
+    let statistic: f64 = (observed_mean.into() - expected_mean.into()) / (pop_sd.into() / (sample_size as f64).sqrt());
     let standard_normal = Normal::new(0.0, 1.0).unwrap();
     let p: f64;
     let test_type: &'static str;
