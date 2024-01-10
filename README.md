@@ -1,6 +1,6 @@
 # [Hyte](https://github.com/abyanmajid/hyte) 🦀
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/abyanmajid/hyte/blob/main/LICENSE) [![Version](https://img.shields.io/badge/crates.io-v0.1.1-orange.svg)](https://crates.io/crates/hyte) ![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/abyanmajid/hyte/blob/main/LICENSE) [![Version](https://img.shields.io/badge/crates.io-v0.1.1-orange.svg)](https://crates.io/crates/hyte) ![example workflow](https://github.com/abyanmajid/hyte/actions/workflows/ci.yml/badge.svg)
 
 ***Hyte*** is a ***Hy***pothesis ***te***sting library crate for Rust with support for Z, T, and Pearson's Chi-squared tests.
 
