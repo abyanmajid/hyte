@@ -8,11 +8,10 @@
 
 ## Installation
 
-Include the following in your `Cargo.toml` file.
+Run the following to include `hyte` as a dependency.
 
 ```toml
-[dependencies]
-hyte = "0.1.0"
+cargo add hyte
 ```
 
 ## Quickstart
