@@ -10,7 +10,7 @@
 
 Run the following to include `hyte` as a dependency.
 
-```toml
+```
 cargo add hyte
 ```
 
