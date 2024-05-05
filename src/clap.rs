@@ -30,16 +30,6 @@ pub struct ServeArgs {
     )]
     pub listener_ip: String,
 
-    /// TCP port to listen on
-    #[arg(
-        short('p'),
-        long = "port",
-        env = "API_PORT",
-        value_name = "tcp",
-        default_value_t = 8000
-    )]
-    pub listener_port: u16,
-
     /// Test printing error message
     #[arg(
         short('t'),
